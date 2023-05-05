@@ -27,21 +27,3 @@ def convert_date(date_str):
     date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
     return date_obj.strftime("%d.%m.%Y")
 
-def print_date_description(operation):
-    """Собираем вместе дату и описание платежа"""
-    print(f"{convert_date(operation['date'])} {operation['description']}")
-
-def print_masked_accounts(operation):
-    """Формируем скрыте данные карты/счета"""
-    try:
-        from_account = operation["from"] # прорабатываем если "from" отсутствует
-    except:
-        from_account = ""
-    to_account = operation["to"]
-    print(f"{mask_account(from_account)} -> {mask_account(to_account)}")
-
-def print_amount(operation):
-    """Формируем сумму и валюту платежа"""
-    print(f"{float(operation['operationAmount']['amount'])} {operation['operationAmount']['currency']['name']}")
-
-
