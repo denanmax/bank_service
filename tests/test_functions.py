@@ -1,6 +1,5 @@
 import pytest
 import utils.functions
-import datetime
 
 def test_get_last_5_operations():
     assert utils.functions.get_last_5_operations([{}]) == []
@@ -28,6 +27,7 @@ def test_get_last_5_operations():
         {"state": "EXECUTED", "date": "2022-01-04"},
         {"state": "EXECUTED", "date": "2022-01-02"}
     ]
+
 def test_mask_account():
     assert utils.functions.mask_account("Счет: 1234567890") == "Счет: **7890"
     assert utils.functions.mask_account("МИР 8201420097886664") == "МИР 8201 42** **** 6664"
@@ -39,6 +39,7 @@ def test_mask_account():
 def test_convert_date():
     assert utils.functions.convert_date("2022-04-01T12:30:00.000000") == "01.04.2022"
     assert utils.functions.convert_date("2023-02-14T09:15:30.000000") == "14.02.2023"
+
 def test_convert_date_value_error():
     with pytest.raises(ValueError):
         utils.functions.convert_date("2021-11-30T16:30:00")
